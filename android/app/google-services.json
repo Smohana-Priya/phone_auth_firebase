@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "472362730743",
+    "project_id": "loginwithfirebase-b6210",
+    "storage_bucket": "loginwithfirebase-b6210.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:472362730743:android:85607f51f6201d52bcbff2",
+        "android_client_info": {
+          "package_name": "com.example.ecbee_inovations"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAe-JZzTvkp0siiXmFd6Ak2LfWZNbSSrYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
