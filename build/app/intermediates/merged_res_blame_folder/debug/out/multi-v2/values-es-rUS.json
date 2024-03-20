@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.ecbee_inovations.app-mergeDebugResources-13:/values-es-rUS/values-es-rUS.xml",
+            "outputFile": "com.example.ecbee_inovations.app-mergeDebugResources-18:/values-es-rUS/values-es-rUS.xml",
             "map": [
                 {
-                    "source": "/Users/mohanapriya/.gradle/caches/transforms-3/de7c0aa25ecd0c64d0217492620772cc/transformed/core-1.6.0/res/values-es-rUS/values-es-rUS.xml",
+                    "source": "/Users/mohanapriya/.gradle/caches/transforms-3/4eab8ee2a0ebb8d0cbc11096cc4a3350/transformed/core-1.9.0/res/values-es-rUS/values-es-rUS.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

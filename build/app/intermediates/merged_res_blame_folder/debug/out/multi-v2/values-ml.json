@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.ecbee_inovations.app-mergeDebugResources-13:/values-ml/values-ml.xml",
+            "outputFile": "com.example.ecbee_inovations.app-mergeDebugResources-18:/values-ml/values-ml.xml",
             "map": [
                 {
                     "source": "/Users/mohanapriya/.gradle/caches/transforms-3/d76d724071b765cca91276e14a04d487/transformed/jetified-play-services-basement-18.1.0/res/values-ml/values.xml",
@@ -55,7 +55,7 @@
                     }
                 },
                 {
-                    "source": "/Users/mohanapriya/.gradle/caches/transforms-3/de7c0aa25ecd0c64d0217492620772cc/transformed/core-1.6.0/res/values-ml/values-ml.xml",
+                    "source": "/Users/mohanapriya/.gradle/caches/transforms-3/4eab8ee2a0ebb8d0cbc11096cc4a3350/transformed/core-1.9.0/res/values-ml/values-ml.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

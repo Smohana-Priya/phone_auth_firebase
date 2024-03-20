@@ -1,5 +1,9 @@
+// ignore_for_file: avoid_print
+
 import 'package:ecbee_inovations/const/app_colors.dart';
 import 'package:ecbee_inovations/const/app_const.dart';
+import 'package:ecbee_inovations/screens/dashboard.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -13,18 +17,40 @@ class _LoginState extends State<Login> {
   bool showSendOTPButton = true;
   final TextEditingController _mobileNoCtrl = TextEditingController();
   final TextEditingController _otpCtrl = TextEditingController();
+  FirebaseAuth auth = FirebaseAuth.instance;
+  String? _verificationId;
 
   void sendOTP() async {
-    // await FirebaseAuth.instance.verifyPhoneNumber(
-    //   phoneNumber: _mobileNoCtrl.text,
-    //   verificationCompleted: (PhoneAuthCredential credential) {},
-    //   verificationFailed: (FirebaseAuthException e) {},
-    //   codeSent: (String verificationId, int? resendToken) {},
-    //   codeAutoRetrievalTimeout: (String verificationId) {},
-    // );
-    setState(() {
-      showSendOTPButton = false;
-    });
+    await auth.verifyPhoneNumber(
+      phoneNumber: '+91${_mobileNoCtrl.text}',
+      verificationCompleted: (PhoneAuthCredential credential) {
+        print("code verified------");
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        print("verify failed-----");
+        if (e.code == 'invalid-phone-number') {
+          print('The provided phone number is not valid.');
+        }
+      },
+      codeSent: (String verificationId, int? resendToken) {
+        print(
+            "code sended---------$verificationId and resend token-------$resendToken");
+        setState(() {
+          _verificationId = verificationId;
+          showSendOTPButton = false;
+        });
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {},
+    );
+  }
+
+  void verifyOTP() async {
+    PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: _verificationId!, smsCode: _otpCtrl.text);
+
+    await auth.signInWithCredential(credential);
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => Dashboard()));
   }
 
   @override
@@ -66,7 +92,8 @@ class _LoginState extends State<Login> {
                             const SizedBox(
                               height: 10,
                             ),
-                            TextFormField(
+                            TextField(
+                              style: const TextStyle(color: Colors.white),
                               controller: _mobileNoCtrl,
                               decoration: const InputDecoration(
                                 filled: true,
@@ -113,7 +140,7 @@ class _LoginState extends State<Login> {
                                         color: Colors.white, fontSize: 19),
                                   ),
                                   const SizedBox(height: 10),
-                                  TextFormField(
+                                  TextField(
                                     controller: _otpCtrl,
                                     decoration: const InputDecoration(
                                       filled: true,
@@ -135,7 +162,7 @@ class _LoginState extends State<Login> {
                               height: 55,
                               width: double.infinity,
                               child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: verifyOTP,
                                 style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(

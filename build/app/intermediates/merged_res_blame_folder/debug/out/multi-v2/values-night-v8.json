@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.ecbee_inovations.app-mergeDebugResources-13:/values-night-v8/values-night-v8.xml",
+            "outputFile": "com.example.ecbee_inovations.app-mergeDebugResources-18:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
                     "source": "/Users/mohanapriya/Documents/workspace/flutter/interviews/login_with_firebase/android/app/src/main/res/values-night/styles.xml",
