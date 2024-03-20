@@ -5,4 +5,5 @@ class AppConst {
   static const phoneNo = "Phone number";
   static const otp = "OTP";
   static const Login = "LOGIN";
+  static const sendOtp = "Send OTP";
 }

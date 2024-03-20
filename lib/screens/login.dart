@@ -10,6 +10,23 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  bool showSendOTPButton = true;
+  final TextEditingController _mobileNoCtrl = TextEditingController();
+  final TextEditingController _otpCtrl = TextEditingController();
+
+  void sendOTP() async {
+    // await FirebaseAuth.instance.verifyPhoneNumber(
+    //   phoneNumber: _mobileNoCtrl.text,
+    //   verificationCompleted: (PhoneAuthCredential credential) {},
+    //   verificationFailed: (FirebaseAuthException e) {},
+    //   codeSent: (String verificationId, int? resendToken) {},
+    //   codeAutoRetrievalTimeout: (String verificationId) {},
+    // );
+    setState(() {
+      showSendOTPButton = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
@@ -49,8 +66,9 @@ class _LoginState extends State<Login> {
                             const SizedBox(
                               height: 10,
                             ),
-                            const TextField(
-                              decoration: InputDecoration(
+                            TextFormField(
+                              controller: _mobileNoCtrl,
+                              decoration: const InputDecoration(
                                 filled: true,
                                 fillColor: AppColors.primaryColor,
                                 border: OutlineInputBorder(
@@ -60,24 +78,55 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                             const SizedBox(height: 40),
-                            const Text(
-                              AppConst.otp,
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 19),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            const TextField(
-                              decoration: InputDecoration(
-                                filled: true,
-                                fillColor: AppColors.primaryColor,
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(15))),
+                            if (showSendOTPButton)
+                              Center(
+                                  child: SizedBox(
+                                height: 65,
+                                width: double.infinity,
+                                child: ElevatedButton(
+                                  onPressed: sendOTP,
+                                  style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            AppColors.primaryColor),
+                                    shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                  ),
+                                  child: const Text(
+                                    AppConst.sendOtp,
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  ),
+                                ),
+                              )),
+                            if (!showSendOTPButton)
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    AppConst.otp,
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 19),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  TextFormField(
+                                    controller: _otpCtrl,
+                                    decoration: const InputDecoration(
+                                      filled: true,
+                                      fillColor: AppColors.primaryColor,
+                                      border: OutlineInputBorder(
+                                        borderSide: BorderSide.none,
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(15)),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
                             const SizedBox(
                               height: 60,
                             ),

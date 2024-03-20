@@ -4,7 +4,7 @@
             "outputFile": "com.example.ecbee_inovations.app-mergeDebugResources-13:/values-km/values-km.xml",
             "map": [
                 {
-                    "source": "/Users/mohanapriya/.gradle/caches/transforms-3/3a627adb3b8fd1eaef2b3a88c69dea8f/transformed/jetified-play-services-base-18.0.1/res/values-km/values.xml",
+                    "source": "/Users/mohanapriya/.gradle/caches/transforms-3/df1d65628752450716074eb180e42113/transformed/jetified-play-services-base-18.0.1/res/values-km/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -21,7 +21,24 @@
                     }
                 },
                 {
-                    "source": "/Users/mohanapriya/.gradle/caches/transforms-3/4e86123542a0b5050868a12cfc9f3992/transformed/browser-1.4.0/res/values-km/values-km.xml",
+                    "source": "/Users/mohanapriya/.gradle/caches/transforms-3/d76d724071b765cca91276e14a04d487/transformed/jetified-play-services-basement-18.1.0/res/values-km/values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "195",
+                        "endColumns": "144",
+                        "endOffsets": "339"
+                    },
+                    "to": {
+                        "startLines": "10",
+                        "startColumns": "4",
+                        "startOffsets": "1054",
+                        "endColumns": "148",
+                        "endOffsets": "1198"
+                    }
+                },
+                {
+                    "source": "/Users/mohanapriya/.gradle/caches/transforms-3/dfae6d24385defc324fd40fbfec9de7b/transformed/browser-1.4.0/res/values-km/values-km.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -38,7 +55,7 @@
                     }
                 },
                 {
-                    "source": "/Users/mohanapriya/.gradle/caches/transforms-3/9f4ccde26cbb246027da95c6911de3ea/transformed/core-1.6.0/res/values-km/values-km.xml",
+                    "source": "/Users/mohanapriya/.gradle/caches/transforms-3/de7c0aa25ecd0c64d0217492620772cc/transformed/core-1.6.0/res/values-km/values-km.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -52,23 +69,6 @@
                         "startOffsets": "2703",
                         "endColumns": "100",
                         "endOffsets": "2799"
-                    }
-                },
-                {
-                    "source": "/Users/mohanapriya/.gradle/caches/transforms-3/815295968eacba26a5aa94ddb74c901b/transformed/jetified-play-services-basement-18.1.0/res/values-km/values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "195",
-                        "endColumns": "144",
-                        "endOffsets": "339"
-                    },
-                    "to": {
-                        "startLines": "10",
-                        "startColumns": "4",
-                        "startOffsets": "1054",
-                        "endColumns": "148",
-                        "endOffsets": "1198"
                     }
                 }
             ]
