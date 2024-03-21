@@ -12,7 +12,7 @@ class OverlayContaier extends StatelessWidget {
       right: 0,
       child: Container(
         margin: EdgeInsets.symmetric(
-            horizontal: MediaQuery.of(context).size.width * 0.38),
+            horizontal: MediaQuery.of(context).size.width * 0.35),
         decoration: BoxDecoration(
           color: Colors.blue,
           borderRadius: BorderRadius.circular(10),

@@ -1,13 +1,14 @@
 // ignore_for_file: avoid_print, use_build_context_synchronously
 
-import 'package:ecbee_inovations/common/common_button.dart';
-import 'package:ecbee_inovations/common/overlay_container.dart';
-import 'package:ecbee_inovations/const/app_colors.dart';
-import 'package:ecbee_inovations/const/app_const.dart';
-import 'package:ecbee_inovations/screens/dashboard.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../common/common_button.dart';
 import '../common/common_textfield.dart';
+import '../common/overlay_container.dart';
+import '../const/app_colors.dart';
+import '../const/app_const.dart';
+import '../service/auth_service.dart';
+import 'home.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -21,39 +22,11 @@ class _LoginState extends State<Login> {
   final TextEditingController _mobileNoCtrl = TextEditingController();
   final TextEditingController _otpCtrl = TextEditingController();
   FirebaseAuth auth = FirebaseAuth.instance;
-  String? _verificationId;
 
-  void sendOTP() async {
-    await auth.verifyPhoneNumber(
-      phoneNumber: '+91${_mobileNoCtrl.text}',
-      verificationCompleted: (PhoneAuthCredential credential) {
-        print("code verified------");
-      },
-      verificationFailed: (FirebaseAuthException e) {
-        print("verify failed-----");
-        if (e.code == 'invalid-phone-number') {
-          print('The provided phone number is not valid.');
-        }
-      },
-      codeSent: (String verificationId, int? resendToken) {
-        print(
-            "code sended---------$verificationId and resend token-------$resendToken");
-        setState(() {
-          _verificationId = verificationId;
-          showSendOTPButton = false;
-        });
-      },
-      codeAutoRetrievalTimeout: (String verificationId) {},
-    );
-  }
-
-  void verifyOTP() async {
-    PhoneAuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: _verificationId!, smsCode: _otpCtrl.text);
-
-    await auth.signInWithCredential(credential);
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => const Dashboard()));
+  void nextStep() {
+    setState(() {
+      showSendOTPButton = false;
+    });
   }
 
   @override
@@ -73,7 +46,7 @@ class _LoginState extends State<Login> {
                   children: [
                     _buildMainContainer(),
                     const OverlayContaier(
-                      text: AppConst.Login,
+                      text: AppConst.login,
                     ),
                   ],
                 ),
@@ -108,7 +81,11 @@ class _LoginState extends State<Login> {
             showSendOTPButton
                 ? Center(
                     child: CommonButton(
-                    onPressed: sendOTP,
+                    onPressed: () {
+                      AuthService.sentOtp(
+                          mobileNo: _mobileNoCtrl.text,
+                          nextStep: () => nextStep());
+                    },
                     text: AppConst.sendOtp,
                     color: AppColors.primaryColor,
                   ))
@@ -121,7 +98,14 @@ class _LoginState extends State<Login> {
             ),
             Center(
                 child: CommonButton(
-              onPressed: verifyOTP,
+              onPressed: () {
+                AuthService.verifyOTP(otp: _otpCtrl.text).then((value) {
+                  if (value == "Success") {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => const Home()));
+                  }
+                });
+              },
               text: AppConst.Login,
               color: AppColors.buttonColor,
             ))
